@@ -1,10 +1,12 @@
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { NextResponse } from "next/server";
+import path from "path";
 import { json } from "stream/consumers";
 import { prisma } from "../prisma.db";
 import { main } from "../route";
 
 
-export const GET = async (req: Request, res: any) => {
+export const GET = async (req: Request, res: Params) => {
     try {
         const id = res.params.id
         await main();
@@ -22,7 +24,7 @@ export const GET = async (req: Request, res: any) => {
 
 
 
-export const PUT = async (req: Request, res: any) => {
+export const PUT = async (req: Request, res: Params) => {
     try {
         const id = res.params.id
         const { email, password } = await req.json();
@@ -37,7 +39,7 @@ export const PUT = async (req: Request, res: any) => {
     }
 }
 
-export const DELETE = async (req: Request, res: any) => {
+export const DELETE = async (req: Request, res: Params) => {
     try {
         const id = res.params.id
         await main();
